@@ -13,6 +13,11 @@ import Context from '../context';
 import EditProfile from './EditProfile';
 import { TbLayoutNavbarExpand } from "react-icons/tb";
 const Header = () => {
+  const order = () =>{
+    setMenuDisplay(preve => !preve);
+    
+    setcss1("r1");
+  }
   const csschanger=()=>{
     if(css1==="r1")
     {
@@ -22,6 +27,9 @@ const Header = () => {
     {
       setcss1("r1");
     }
+  }
+  const log=()=>{
+    setcss1("r1");
   }
   
   const [css1,setcss1]=useState("r1");
@@ -44,6 +52,7 @@ const Header = () => {
     const data = await fetchData.json()
     
     if(data.success){
+      setcss1("r");
       toast.success(data.message)
       dispatch(setUserDetails(null))
       navigate("/")
@@ -67,7 +76,7 @@ const Header = () => {
   }
   function dialog(){
     setMenuDisplay(preve => !preve);
-    newedit(preve => !preve)
+    newedit(preve => !preve);
 
   }
   return (
@@ -115,7 +124,7 @@ const Header = () => {
                               <Link to={"/admin-panel/all-products"} className='whitespace-nowrap hidden md:block hover:bg-slate-100 p-2' onClick={()=>setMenuDisplay(preve => !preve)}>Admin Panel</Link>
                             )
                           }
-                          <Link to={'/order'} className='whitespace-nowrap block hover:bg-slate-100 p-2' onClick={()=>setMenuDisplay(preve => !preve)}>Order</Link>
+                          <Link to={'/order'} className='whitespace-nowrap block hover:bg-slate-100 p-2' onClick={order}>Order</Link>
                          
                          <Link to={""} className='whitespace-nowrap block hover:bg-slate-100 p-2' onClick={dialog}>Edit Profile</Link>
 
@@ -125,7 +134,7 @@ const Header = () => {
                   }
                  
                  {edit &&(
-                      <EditProfile onClose={()=>newedit(false)} />
+                      <EditProfile  onClose={()=>newedit(false)} />
                     )
                     }
                 </div>
@@ -150,7 +159,7 @@ const Header = () => {
                       <button onClick={handleLogout} className='px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700'>Logout</button>
                     )
                     : (
-                    <Link to={"/login"} className='px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700'>Login</Link>
+                    <Link to={"/login"}  className='px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700'><button onClick={log}>Login</button></Link>
                     )
                   }
                     
