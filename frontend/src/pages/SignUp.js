@@ -10,7 +10,7 @@ import Context from '../context';
 import { useContext } from 'react';
 
 const SignUp = () => {
-    const {loading1}=useContext(Context);
+    const {loading1,notloading1}=useContext(Context);
 
   const [showPassword,setShowPassword] = useState(false)
   const [showConfirmPassword,setShowConfirmPassword] = useState(false)
@@ -65,7 +65,7 @@ const SignUp = () => {
           })
     
           const dataApi = await dataResponse.json()
-
+          notloading1();
           if(dataApi.success){
             toast.success(dataApi.message)
             navigate("/login")
