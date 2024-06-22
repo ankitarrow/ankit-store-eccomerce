@@ -2,11 +2,16 @@ import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import SummaryApi from '../common';
 import displayINRCurrency from '../helpers/displayCurrency';
-
+import Context from '../context';
+import { useContext } from 'react';
+   
 const AllOrder = () => {
+    const {loading1}=useContext(Context);
+
     const [data, setData] = useState([]);
 
     const fetchOrderDetails = async () => {
+        loading1();
         const response = await fetch(SummaryApi.allOrder.url, {
             method: SummaryApi.allOrder.method,
             credentials: 'include'
