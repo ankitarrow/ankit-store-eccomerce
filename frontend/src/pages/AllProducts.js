@@ -2,12 +2,17 @@ import React, { useEffect, useState } from 'react'
 import UploadProduct from '../components/UploadProduct'
 import SummaryApi from '../common'
 import AdminProductCard from '../components/AdminProductCard'
+import Context from '../context';
+import { useContext } from 'react';
 
 const AllProducts = () => {
+  const {loading1}=useContext(Context);
+
   const [openUploadProduct,setOpenUploadProduct] = useState(false)
   const [allProduct,setAllProduct] = useState([])
 
   const fetchAllProduct = async() =>{
+    loading1();
     const response = await fetch(SummaryApi.allProduct.url)
     const dataResponse = await response.json()
 
