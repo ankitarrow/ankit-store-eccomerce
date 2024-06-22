@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import SummaryApi from '../common'
 import VerticalCard from '../components/VerticalCard'
+import Context from '../context';
+import { useContext } from 'react';
 
 const SearchProduct = () => {
+  const {loading1}=useContext(Context);
+
     const query = useLocation()
     const [data,setData] = useState([])
     const [loading,setLoading] = useState(false)
@@ -11,6 +15,8 @@ const SearchProduct = () => {
     console.log("query",query.search)
 
     const fetchProduct = async()=>{
+      loading1();
+   
         setLoading(true)
         const response = await fetch(SummaryApi.searchProduct.url+query.search)
         const dataResponse = await response.json()
