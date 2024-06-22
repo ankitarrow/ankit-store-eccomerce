@@ -6,8 +6,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import imageTobase64 from '../helpers/imageTobase64';
 import SummaryApi from '../common';
 import { toast } from 'react-toastify';
+import Context from '../context';
+import { useContext } from 'react';
 
 const SignUp = () => {
+    const {loading1}=useContext(Context);
+
   const [showPassword,setShowPassword] = useState(false)
   const [showConfirmPassword,setShowConfirmPassword] = useState(false)
   const [data,setData] = useState({
@@ -49,7 +53,7 @@ const SignUp = () => {
 
   const handleSubmit = async(e) =>{
       e.preventDefault()
-
+      loading1();
       if(data.password === data.confirmPassword){
 
         const dataResponse = await fetch(SummaryApi.signUP.url,{
