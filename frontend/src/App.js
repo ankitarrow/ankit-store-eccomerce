@@ -30,7 +30,7 @@ function App() {
       })
 
       const dataApi = await dataResponse.json()
-
+       notloading1();
        
       if(dataApi.success){
         dispatch(setUserDetails(dataApi.data))
@@ -45,6 +45,7 @@ function App() {
     })
 
     const dataApi = await dataResponse.json()
+    notloading1();
     setCartProductCount(dataApi?.data?.count)
   }
 
