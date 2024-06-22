@@ -7,7 +7,7 @@ import { setUserDetails } from '../store/userSlice';
 import Context from '../context';
    
 const EditProfile = ( {onClose}) => {
-  const {loading1}=useContext(Context);
+  const {loading1,notloading1}=useContext(Context);
 
     const dispatch = useDispatch()
 const user = useSelector(state => state?.user?.user)
@@ -46,6 +46,7 @@ const handleSubmit = async(e) =>{
     const responseData = await fetchResponse.json()
 
     if(responseData.success){
+       notloading1();
         toast.success(responseData.message)
         onClose()
     }
