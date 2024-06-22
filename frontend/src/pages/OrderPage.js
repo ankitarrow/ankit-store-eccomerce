@@ -2,11 +2,16 @@ import React, { useEffect, useState } from 'react'
 import SummaryApi from '../common'
 import moment from 'moment'
 import displayINRCurrency from '../helpers/displayCurrency'
+import Context from '../context';
+import { useContext } from 'react';
 
 const OrderPage = () => {
   const [data,setData] = useState([])
-
+  const {loading1}=useContext(Context);
+    
   const fetchOrderDetails = async()=>{
+    loading1();
+   
     const response = await fetch(SummaryApi.getOrder.url,{
       method : SummaryApi.getOrder.method,
       credentials : 'include'
