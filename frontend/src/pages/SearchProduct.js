@@ -6,7 +6,7 @@ import Context from '../context';
 import { useContext } from 'react';
 
 const SearchProduct = () => {
-  const {loading1}=useContext(Context);
+  const {loading1,notloading1}=useContext(Context);
 
     const query = useLocation()
     const [data,setData] = useState([])
@@ -21,7 +21,8 @@ const SearchProduct = () => {
         const response = await fetch(SummaryApi.searchProduct.url+query.search)
         const dataResponse = await response.json()
         setLoading(false)
-
+       notloading1();
+       
         setData(dataResponse.data)
     }
 
