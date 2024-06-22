@@ -10,9 +10,12 @@ const Cart = () => {
     const [loading,setLoading] = useState(false)
     const context = useContext(Context)
     const loadingCart = new Array(4).fill(null)
+    const {loading1}=useContext(Context);
 
 
     const fetchData = async() =>{
+        loading1();
+   
         
         const response = await fetch(SummaryApi.addToCartProductView.url,{
             method : SummaryApi.addToCartProductView.method,
