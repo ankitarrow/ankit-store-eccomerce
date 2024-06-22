@@ -14,7 +14,7 @@ const UploadProduct = ({
     onClose,
     fetchData
 }) => {
-  const {loading1}=useContext(Context);
+  const {loading1,notloading1}=useContext(Context);
 
   const [data,setData] = useState({
     productName : "",
@@ -45,6 +45,7 @@ const UploadProduct = ({
     const file = e.target.files[0]
     console.log(file);
     const uploadImageCloudinary = await uploadImage(file)
+     notloading1();
     console.log(uploadImageCloudinary);
     setData((preve)=>{
       return{
@@ -87,6 +88,8 @@ const UploadProduct = ({
     const responseData = await response.json()
 
     if(responseData.success){
+       
+notloading1();
         toast.success(responseData?.message)
         onClose()
         fetchData()
@@ -97,7 +100,6 @@ const UploadProduct = ({
       toast.error(responseData?.message)
     }
   
-
   }
 
   return (
