@@ -7,11 +7,15 @@ import DisplayImage from './DisplayImage';
 import { MdDelete } from "react-icons/md";
 import SummaryApi from '../common';
 import {toast} from 'react-toastify'
-
+import Context from '../context';
+import { useContext } from 'react';
+   
 const UploadProduct = ({
     onClose,
     fetchData
 }) => {
+  const {loading1}=useContext(Context);
+
   const [data,setData] = useState({
     productName : "",
     brandName : "",
@@ -37,6 +41,7 @@ const UploadProduct = ({
   }
 
   const handleUploadProduct = async(e) => {
+    loading1();
     const file = e.target.files[0]
     console.log(file);
     const uploadImageCloudinary = await uploadImage(file)
@@ -50,6 +55,7 @@ const UploadProduct = ({
   }
 
   const handleDeleteProductImage = async(index)=>{
+    loading1();
     console.log("image index",index)
     
     const newProductImage = [...data.productImage]
@@ -68,7 +74,7 @@ const UploadProduct = ({
   {/**upload product */}
   const handleSubmit = async(e) =>{
     e.preventDefault()
-    
+    loading1();    
     const response = await fetch(SummaryApi.uploadProduct.url,{
       method : SummaryApi.uploadProduct.method,
       credentials : 'include',
