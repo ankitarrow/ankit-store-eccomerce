@@ -13,7 +13,7 @@ const DeleteProduct = ({
   const data = {
     _id: productData?._id
   };
-  const {loading1}=useContext(Context);
+  const {loading1,notloading1}=useContext(Context);
 
   const handleSubmit = async () => {
     loading1();
@@ -30,6 +30,7 @@ const DeleteProduct = ({
       const responseData = await response.json();
 
       if (responseData.success) {
+         notloading1();
         toast.success(responseData.message);
         onClose();
         fetchdata();
