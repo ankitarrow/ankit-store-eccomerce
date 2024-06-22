@@ -6,8 +6,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import SummaryApi from '../common';
 import { toast } from 'react-toastify';
 import Context from '../context';
-
+   
 const Login = () => {
+    const {loading1}=useContext(Context);
+
+
     const [showPassword,setShowPassword] = useState(false)
     const [data,setData] = useState({
         email : "",
@@ -30,7 +33,7 @@ const Login = () => {
 
     const handleSubmit = async(e) =>{
         e.preventDefault()
-
+        loading1();
         const dataResponse = await fetch(SummaryApi.signIn.url,{
             method : SummaryApi.signIn.method,
             credentials : 'include',
