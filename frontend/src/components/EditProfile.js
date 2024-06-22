@@ -4,7 +4,11 @@ import { CgClose } from "react-icons/cg";
 import SummaryApi from '../common';
 import { toast } from 'react-toastify';
 import { setUserDetails } from '../store/userSlice';
+import Context from '../context';
+   
 const EditProfile = ( {onClose}) => {
+  const {loading1}=useContext(Context);
+
     const dispatch = useDispatch()
 const user = useSelector(state => state?.user?.user)
 const [data,setData] = useState({
@@ -24,6 +28,7 @@ const handleOnChange = (e)=>{
 }
 const handleSubmit = async(e) =>{
     e.preventDefault()
+    loading1();
     const fetchResponse = await fetch(SummaryApi.updateUser.url,{
         method : SummaryApi.updateUser.method,
         credentials : 'include',
