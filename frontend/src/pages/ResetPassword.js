@@ -3,8 +3,12 @@ import loginIcons from '../assest/signin.gif';
 import { useNavigate,useParams } from 'react-router-dom';
 import SummaryApi from '../common';
 import { toast } from 'react-toastify';
-
+import Context from '../context';
+import { useContext } from 'react';
+   
 const ResetPassword = () => {
+    const {loading1}=useContext(Context);
+
     const { token } = useParams();
     const [data, setData] = useState({
         password: "",
@@ -22,6 +26,7 @@ const ResetPassword = () => {
     const handleSubmit = async (e) => {
         console.log(SummaryApi.ForgotPassword.url);
         e.preventDefault();
+        loading1();
         try {
             const response = await fetch(`${SummaryApi.ResetPassword.url}/${token}`, {
                 method: SummaryApi.ResetPassword.method,
