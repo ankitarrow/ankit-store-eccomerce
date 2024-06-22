@@ -7,13 +7,14 @@ import DisplayImage from './DisplayImage';
 import { MdDelete } from "react-icons/md";
 import SummaryApi from '../common';
 import {toast} from 'react-toastify'
-
+import Context from '../context';
+import { useContext } from 'react';
 const AdminEditProduct = ({
     onClose,
     productData,
     fetchdata
   }) => {
-
+  const {loading1}=useContext(Context);
   const [data,setData] = useState({
     ...productData,
     productName : productData?.productName,
@@ -70,7 +71,7 @@ const AdminEditProduct = ({
   {/**upload product */}
   const handleSubmit = async(e) =>{
     e.preventDefault()
-    
+    loading1();
     const response = await fetch(SummaryApi.updateProduct.url,{
       method : SummaryApi.updateProduct.method,
       credentials : 'include',
