@@ -12,6 +12,7 @@ import ROLE from '../common/role';
 import Context from '../context';
 import EditProfile from './EditProfile';
 import { TbLayoutNavbarExpand } from "react-icons/tb";
+   
 const Header = () => {
   const order = () =>{
     setMenuDisplay(preve => !preve);
@@ -31,7 +32,8 @@ const Header = () => {
   const log=()=>{
     setcss1("r1");
   }
-  
+  const {loading1,notloading1}=useContext(Context);
+
   const [css1,setcss1]=useState("r1");
   const user = useSelector(state => state?.user?.user)
   const dispatch = useDispatch()
@@ -44,13 +46,14 @@ const Header = () => {
   const [search,setSearch] = useState(searchQuery)
   const [edit,newedit] = useState(false);
   const handleLogout = async() => {
+    loading1();
     const fetchData = await fetch(SummaryApi.logout_user.url,{
       method : SummaryApi.logout_user.method,
       credentials : 'include'
     })
 
     const data = await fetchData.json()
-    
+    notloading1();
     if(data.success){
       setcss1("r");
       toast.success(data.message)
@@ -81,7 +84,10 @@ const Header = () => {
   }
   return (
     <header className='h-16 shadow-md bg-white fixed w-full z-40'>
+   
       <div className=' h-full container mx-auto flex items-center px-4 justify-between'>
+
+
             <div className='scale-125 hover:scale-150'>
                 <Link to={"/"}>
                     <Logo w={90} h={50}/>
