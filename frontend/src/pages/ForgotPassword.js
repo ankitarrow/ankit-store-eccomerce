@@ -3,8 +3,12 @@ import loginIcons from '../assest/signin.gif';
 import { useNavigate } from 'react-router-dom';
 import SummaryApi from '../common';
 import { toast } from 'react-toastify';
+import Context from '../context';
+import { useContext } from 'react';
 
 const ForgotPassword = () => {
+    const {loading1}=useContext(Context);
+
     const [data, setData] = useState({
         email: "",
     });
@@ -19,7 +23,7 @@ const ForgotPassword = () => {
     };
 
     const handleSubmit = async (e) => {
-        console.log(SummaryApi.ForgotPassword.url);
+        loading1();
         e.preventDefault();
         try {
             const response = await fetch(SummaryApi.ForgotPassword.url, {
