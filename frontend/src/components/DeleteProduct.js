@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { CgClose } from 'react-icons/cg';
 import SummaryApi from '../common';
 import { toast } from 'react-toastify';
-
+import Context from '../context';
+import { useContext } from 'react';
+   
 const DeleteProduct = ({
   onClose,
   productData,
@@ -11,8 +13,10 @@ const DeleteProduct = ({
   const data = {
     _id: productData?._id
   };
+  const {loading1}=useContext(Context);
 
   const handleSubmit = async () => {
+    loading1();
     try {
       const response = await fetch(SummaryApi.deleteProduct.url, {
         method: SummaryApi.deleteProduct.method,
