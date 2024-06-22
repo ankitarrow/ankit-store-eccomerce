@@ -14,10 +14,14 @@ const CategoryList = () => {
 
     const fetchCategoryProduct = async() =>{
         loading1();
-        setLoading(true)
+        setLoading(true);
+       loading1();
         const response = await fetch(SummaryApi.categoryProduct.url)
+       loading1();
         const dataResponse = await response.json()
+       loading1();
         setLoading(false)
+       loading1();
         setCategoryProduct(dataResponse.data)
         notloading1();
     }
