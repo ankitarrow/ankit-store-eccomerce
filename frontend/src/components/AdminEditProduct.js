@@ -84,7 +84,7 @@ const AdminEditProduct = ({
     const responseData = await response.json()
      
     if(responseData.success){
-        notloading1(false);
+        notloading1();
         toast.success(responseData?.message)
         onClose()
         fetchdata()
