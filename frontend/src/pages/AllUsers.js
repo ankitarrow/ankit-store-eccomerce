@@ -4,8 +4,12 @@ import { toast } from 'react-toastify'
 import moment from 'moment'
 import { MdModeEdit } from "react-icons/md";
 import ChangeUserRole from '../components/ChangeUserRole';
+import Context from '../context';
+import { useContext } from 'react';
 
 const AllUsers = () => {
+    const {loading1}=useContext(Context);
+
     const [allUser,setAllUsers] = useState([])
     const [openUpdateRole,setOpenUpdateRole] = useState(false)
     const [updateUserDetails,setUpdateUserDetails] = useState({
@@ -16,6 +20,7 @@ const AllUsers = () => {
     })
 
     const fetchAllUsers = async() =>{
+        loading1();
         const fetchData = await fetch(SummaryApi.allUser.url,{
             method : SummaryApi.allUser.method,
             credentials : 'include'
