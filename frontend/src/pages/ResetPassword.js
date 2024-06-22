@@ -7,7 +7,7 @@ import Context from '../context';
 import { useContext } from 'react';
    
 const ResetPassword = () => {
-    const {loading1}=useContext(Context);
+    const {loading1,notloading1}=useContext(Context);
 
     const { token } = useParams();
     const [data, setData] = useState({
@@ -38,7 +38,7 @@ const ResetPassword = () => {
             });
 
             const result = await response.json();
-
+            notloading1();
             if (result.success) {
                 navigate('/');
                 toast.success(result.message);
