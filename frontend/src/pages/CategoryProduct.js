@@ -3,8 +3,12 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import productCategory from '../helpers/productCategory'
 import VerticalCard from '../components/VerticalCard'
 import SummaryApi from '../common'
+import Context from '../context';
+import { useContext } from 'react';
 
 const CategoryProduct = () => {
+  const {loading1}=useContext(Context);
+
     const [data,setData] = useState([])
     const navigate = useNavigate()
     const [loading,setLoading] = useState(false)
@@ -23,6 +27,7 @@ const CategoryProduct = () => {
     const [sortBy,setSortBy] = useState("")
 
     const fetchData = async()=>{
+      loading1();
       const response = await fetch(SummaryApi.filterProduct.url,{
         method : SummaryApi.filterProduct.method,
         headers : {
