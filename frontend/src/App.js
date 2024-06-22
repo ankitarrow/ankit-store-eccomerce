@@ -17,16 +17,10 @@ function App() {
   const [cartProductCount,setCartProductCount] = useState(0)
   const [loader,setLoader] = useState(false)
   const loading1=()=>{
-    setLoader(true)
-    setTimeout(()=>{
-      setLoader(false)
-    },1000)
+    setLoader(true);
   }
-  const loading2=()=>{
-    setLoader(true)
-    setTimeout(()=>{
-      setLoader(false)
-    },4000)
+  const notloading1=()=>{
+    setLoader(false);
   }
   const fetchUserDetails = async()=>{
       loading1();
@@ -69,7 +63,7 @@ function App() {
           fetchUserAddToCart,
           setLoader,
           loading1,
-          loading2
+          notloading1
       }}>
         <ToastContainer 
           position='top-center'
