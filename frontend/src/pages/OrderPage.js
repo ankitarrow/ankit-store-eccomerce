@@ -7,7 +7,7 @@ import { useContext } from 'react';
 
 const OrderPage = () => {
   const [data,setData] = useState([])
-  const {loading1}=useContext(Context);
+  const {loading1,notloading1}=useContext(Context);
     
   const fetchOrderDetails = async()=>{
     loading1();
@@ -18,7 +18,7 @@ const OrderPage = () => {
     })
 
     const responseData = await response.json()
-
+    notloading1();
     setData(responseData.data)
     console.log("order list",responseData)
   }
