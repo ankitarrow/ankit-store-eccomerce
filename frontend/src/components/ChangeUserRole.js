@@ -3,7 +3,9 @@ import ROLE from '../common/role'
 import { IoMdClose } from "react-icons/io";
 import SummaryApi from '../common';
 import { toast } from 'react-toastify';
-
+import Context from '../context';
+import { useContext } from 'react';
+   
 const ChangeUserRole = ({
     name,
     email,
@@ -13,6 +15,7 @@ const ChangeUserRole = ({
     callFunc,
 }) => {
     const [userRole,setUserRole] = useState(role)
+    const {loading1}=useContext(Context);
 
     const handleOnChangeSelect = (e) => {
         setUserRole(e.target.value)
@@ -20,8 +23,9 @@ const ChangeUserRole = ({
         console.log(e.target.value)
     }
     const updateUserRole = async() =>{
-        
+        loading1();
         const fetchResponse = await fetch(SummaryApi.updateUser.url,{
+            
             method : SummaryApi.updateUser.method,
             credentials : 'include',
             headers : {
