@@ -7,7 +7,7 @@ import Context from '../context';
 import { useContext } from 'react';
 
 const ForgotPassword = () => {
-    const {loading1}=useContext(Context);
+    const {loading1,notloading1}=useContext(Context);
 
     const [data, setData] = useState({
         email: "",
@@ -36,7 +36,7 @@ const ForgotPassword = () => {
             });
 
             const result = await response.json();
-
+            notloading1();
             if (result.success) {
                 navigate('/');
                 toast.success(result.message);
