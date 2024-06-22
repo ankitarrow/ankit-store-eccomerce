@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import Context from '../context';
    
 const Login = () => {
-    const {loading1}=useContext(Context);
+    const {loading1,notloading1}=useContext(Context);
 
 
     const [showPassword,setShowPassword] = useState(false)
@@ -44,7 +44,7 @@ const Login = () => {
         })
 
         const dataApi = await dataResponse.json()
-
+        notloading1();
         if(dataApi.success){
             toast.success(dataApi.message)
             navigate('/')
