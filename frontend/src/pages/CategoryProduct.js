@@ -7,7 +7,7 @@ import Context from '../context';
 import { useContext } from 'react';
 
 const CategoryProduct = () => {
-  const {loading1}=useContext(Context);
+  const {loading1,notloading1}=useContext(Context);
 
     const [data,setData] = useState([])
     const navigate = useNavigate()
@@ -39,6 +39,7 @@ const CategoryProduct = () => {
       })
 
       const dataResponse = await response.json()
+      notloading1();
       setData(dataResponse?.data || [])
     }
 
