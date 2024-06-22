@@ -6,19 +6,19 @@ import Context from '../context';
 import { useContext } from 'react';
    
 const AllOrder = () => {
-    const {loading2}=useContext(Context);
+    const {loading1,notloading1}=useContext(Context);
 
     const [data, setData] = useState([]);
 
     const fetchOrderDetails = async () => {
-        loading2();
+        loading1();
         const response = await fetch(SummaryApi.allOrder.url, {
             method: SummaryApi.allOrder.method,
             credentials: 'include'
         });
 
         const responseData = await response.json();
-
+         notloading1();
         setData(responseData.data);
     };
 
