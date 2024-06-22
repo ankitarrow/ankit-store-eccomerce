@@ -15,7 +15,7 @@ const ChangeUserRole = ({
     callFunc,
 }) => {
     const [userRole,setUserRole] = useState(role)
-    const {loading1}=useContext(Context);
+    const {loading1,notloading1}=useContext(Context);
 
     const handleOnChangeSelect = (e) => {
         setUserRole(e.target.value)
@@ -40,6 +40,7 @@ const ChangeUserRole = ({
         const responseData = await fetchResponse.json()
 
         if(responseData.success){
+           notloading1()
             toast.success(responseData.message)
             onClose()
             callFunc()
