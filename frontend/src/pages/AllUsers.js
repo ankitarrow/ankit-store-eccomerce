@@ -8,7 +8,7 @@ import Context from '../context';
 import { useContext } from 'react';
 
 const AllUsers = () => {
-    const {loading1}=useContext(Context);
+    const {loading1,notloading1}=useContext(Context);
 
     const [allUser,setAllUsers] = useState([])
     const [openUpdateRole,setOpenUpdateRole] = useState(false)
@@ -27,7 +27,7 @@ const AllUsers = () => {
         })
 
         const dataResponse = await fetchData.json()
-
+        notloading1();
         if(dataResponse.success){
             setAllUsers(dataResponse.data)
         }
