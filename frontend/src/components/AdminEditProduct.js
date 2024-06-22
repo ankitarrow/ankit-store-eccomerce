@@ -14,7 +14,7 @@ const AdminEditProduct = ({
     productData,
     fetchdata
   }) => {
-  const {loading1}=useContext(Context);
+  const {loading1,notloading1}=useContext(Context);
   const [data,setData] = useState({
     ...productData,
     productName : productData?.productName,
@@ -82,8 +82,9 @@ const AdminEditProduct = ({
     })
 
     const responseData = await response.json()
-
+     
     if(responseData.success){
+        notloading1(false);
         toast.success(responseData?.message)
         onClose()
         fetchdata()
