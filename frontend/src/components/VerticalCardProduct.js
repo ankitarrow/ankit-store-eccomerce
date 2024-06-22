@@ -10,6 +10,7 @@ const VerticalCardProduct = ({category, heading}) => {
     const [data,setData] = useState([])
     const [loading,setLoading] = useState(true)
     const loadingList = new Array(13).fill(null)
+    const {loading1,notloading1}=useContext(Context);
 
     const [scroll,setScroll] = useState(0)
     const scrollElement = useRef()
@@ -22,10 +23,11 @@ const VerticalCardProduct = ({category, heading}) => {
     }
 
     const fetchData = async() =>{
+        loading1();
         setLoading(true)
         const categoryProduct = await fetchCategoryWiseProduct(category)
         setLoading(false)
-
+         notloading1();
         console.log("horizontal data",categoryProduct.data)
         setData(categoryProduct?.data)
     }
