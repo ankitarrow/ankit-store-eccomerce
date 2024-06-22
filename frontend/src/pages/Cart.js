@@ -10,7 +10,7 @@ const Cart = () => {
     const [loading,setLoading] = useState(false)
     const context = useContext(Context)
     const loadingCart = new Array(4).fill(null)
-    const {loading1}=useContext(Context);
+    const {loading1,notloading1}=useContext(Context);
 
 
     const fetchData = async() =>{
@@ -27,7 +27,7 @@ const Cart = () => {
        
 
         const responseData = await response.json()
-
+        notloading1();
         if(responseData.success){
             setData(responseData.data)
         }
