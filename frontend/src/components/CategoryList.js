@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import SummaryApi from '../common'
 import { Link } from 'react-router-dom'
+import Context from '../context';
+import { useContext } from 'react';
 
+   
 const CategoryList = () => {
     const [categoryProduct,setCategoryProduct] = useState([])
     const [loading,setLoading] = useState(false)
+    const {loading1,notloading1}=useContext(Context);
 
     const categoryLoading = new Array(13).fill(null)
 
     const fetchCategoryProduct = async() =>{
+        loading1();
         setLoading(true)
         const response = await fetch(SummaryApi.categoryProduct.url)
         const dataResponse = await response.json()
         setLoading(false)
         setCategoryProduct(dataResponse.data)
+        notloading1();
     }
 
     useEffect(()=>{
