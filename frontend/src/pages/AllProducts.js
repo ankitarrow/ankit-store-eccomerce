@@ -6,7 +6,7 @@ import Context from '../context';
 import { useContext } from 'react';
 
 const AllProducts = () => {
-  const {loading1}=useContext(Context);
+  const {loading1,notloading1}=useContext(Context);
 
   const [openUploadProduct,setOpenUploadProduct] = useState(false)
   const [allProduct,setAllProduct] = useState([])
@@ -17,7 +17,7 @@ const AllProducts = () => {
     const dataResponse = await response.json()
 
     console.log("product data",dataResponse)
-
+    notloading1();
     setAllProduct(dataResponse?.data || [])
   }
 
