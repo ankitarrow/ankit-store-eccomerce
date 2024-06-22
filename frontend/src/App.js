@@ -22,6 +22,12 @@ function App() {
       setLoader(false)
     },1000)
   }
+  const loading2=()=>{
+    setLoader(true)
+    setTimeout(()=>{
+      setLoader(false)
+    },4000)
+  }
   const fetchUserDetails = async()=>{
       loading1();
       const dataResponse = await fetch(SummaryApi.current_user.url,{
@@ -63,6 +69,7 @@ function App() {
           fetchUserAddToCart,
           setLoader,
           loading1,
+          loading2
       }}>
         <ToastContainer 
           position='top-center'
