@@ -18,15 +18,11 @@ function App() {
   const [loader,setLoader] = useState(false)
   const loading1=()=>{
     setLoader(true)
-    setTimeout(()=>{
-      setLoader(false)
-    },1000)
+    
   }
-  const loading2=()=>{
-    setLoader(true)
-    setTimeout(()=>{
-      setLoader(false)
-    },4000)
+  const notloading1=()=>{
+    setLoader(false)
+    
   }
   const fetchUserDetails = async()=>{
       loading1();
@@ -41,6 +37,7 @@ function App() {
       if(dataApi.success){
         dispatch(setUserDetails(dataApi.data))
       }
+    notloading1();
   }
 
   const fetchUserAddToCart = async()=>{
@@ -52,6 +49,7 @@ function App() {
 
     const dataApi = await dataResponse.json()
     setCartProductCount(dataApi?.data?.count)
+    notloading1();
   }
 
   useEffect(()=>{
@@ -69,7 +67,7 @@ function App() {
           fetchUserAddToCart,
           setLoader,
           loading1,
-          loading2
+          notloading1
       }}>
         <ToastContainer 
           position='top-center'
