@@ -79,7 +79,7 @@ const handleSubmit = async(e) =>{
          <input 
            type='text' 
            id='Name' 
-           placeholder='enter product name' 
+           placeholder='enter name' 
            name='Name'
            value={data.Name} 
            onChange={handleOnChange}
@@ -90,7 +90,7 @@ const handleSubmit = async(e) =>{
          <input 
            type='text' 
            id='Mob_NO' 
-           placeholder='enter product name' 
+           placeholder='enter mobile no' 
            name='Mob_NO'
            value={data.Mob_NO} 
            onChange={handleOnChange}
@@ -101,7 +101,7 @@ const handleSubmit = async(e) =>{
          <input 
            type='text' 
            id='Address' 
-           placeholder='enter product name' 
+           placeholder='enter your address' 
            name='Address'
            value={data.Address} 
            onChange={handleOnChange}
