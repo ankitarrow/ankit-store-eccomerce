@@ -58,7 +58,7 @@ transform: translateY(70%) translateX(83%) !important;
 }
 
 }
-.loader-container {
+/*.loader-container {
     position: absolute;
     top: 0;
     left: 50%;
@@ -75,6 +75,6 @@ transform: translateY(70%) translateX(83%) !important;
   
   .loader-container.show {
     visibility: visible;
-  }
+  }*/
   
      
