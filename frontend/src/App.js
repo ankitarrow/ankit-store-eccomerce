@@ -17,10 +17,16 @@ function App() {
   const [cartProductCount,setCartProductCount] = useState(0)
   const [loader,setLoader] = useState(false)
   const loading1=()=>{
-    setLoader(true);
+    setLoader(true)
+    setTimeout(()=>{
+      setLoader(false)
+    },1000)
   }
-  const notloading1=()=>{
-    setLoader(false);
+  const loading2=()=>{
+    setLoader(true)
+    setTimeout(()=>{
+      setLoader(false)
+    },4000)
   }
   const fetchUserDetails = async()=>{
       loading1();
@@ -30,7 +36,7 @@ function App() {
       })
 
       const dataApi = await dataResponse.json()
-       notloading1();
+
        
       if(dataApi.success){
         dispatch(setUserDetails(dataApi.data))
@@ -45,7 +51,6 @@ function App() {
     })
 
     const dataApi = await dataResponse.json()
-    notloading1();
     setCartProductCount(dataApi?.data?.count)
   }
 
@@ -64,13 +69,14 @@ function App() {
           fetchUserAddToCart,
           setLoader,
           loading1,
-          notloading1
+          loading2
       }}>
         <ToastContainer 
           position='top-center'
         />
-        {loader && <Loader />}
-
+<div className={`loader-container ${loader ? 'show' : ''}`}>
+  <Loader />
+</div>
         
         <Header/>
          <main className='min-h-[calc(100vh-120px)] pt-16'>
