@@ -58,9 +58,4 @@ transform: translateY(70%) translateX(83%) !important;
 }
 
 }
-#k {
-    position: absolute !important; 
-    z-index: 9999!important;
-    left: 50%;
-    transform: translateX(-50%);
-}
+
