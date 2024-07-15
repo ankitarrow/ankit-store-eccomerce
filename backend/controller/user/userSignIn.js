@@ -45,8 +45,6 @@ async function userSignInController(req,res){
        }
 
 
-    console.log(dataApi,dataResponse);
-    document.cookie = `token=${dataApi.data}`;
     }catch(err){
         res.json({
             message : err.message || err  ,
