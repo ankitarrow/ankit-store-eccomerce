@@ -31,7 +31,7 @@ async function userSignInController(req, res) {
 
             const cookieOptionsNone = {
                 httpOnly: true,
-                secure: process.env.NODE_ENV === 'production', // Set secure flag based on environment
+                secure: true, // Set secure flag based on environment
                 sameSite: 'None', // Use 'None' for cross-site requests
                 maxAge: 1000 * 60 * 60 * 8, // 8 hours expiration
             };
