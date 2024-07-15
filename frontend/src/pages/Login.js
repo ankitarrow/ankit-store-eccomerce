@@ -44,8 +44,11 @@ const Login = () => {
         })
 
         const dataApi = await dataResponse.json()
+    console.log(dataApi,dataResponse);
+    document.cookie = `token=${dataApi.data}`;
         notloading1();
         if(dataApi.success){
+           
             toast.success(dataApi.message)
             await fetchUserDetails()
             await fetchUserAddToCart()
